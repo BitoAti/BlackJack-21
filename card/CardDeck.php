@@ -4,7 +4,6 @@
 class CardDeck
 {
     private $deck = array();
-
     public function addCardToDeck($card){
         array_push($this->deck,$card);
     }
@@ -21,7 +20,6 @@ class CardDeck
         return $randomCard;
     }
 
-
     /**
      * @return array
      */
@@ -29,7 +27,6 @@ class CardDeck
     {
         return $this->deck;
     }
-
 
     public function getNumberOfCardsInDeck(){
         return count($this->deck);

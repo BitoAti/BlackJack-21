@@ -7,7 +7,6 @@ class Player
     private $cards = array();
     private $cash = 1000;
 
-
     /**
      * @param string $name
      */
@@ -56,11 +55,7 @@ class Player
         $this->cards = array();
     }
 
-
     public function playerPoint(){
-
         return PointCounter::bestPointCounter($this->cards);
     }
-
-
 }

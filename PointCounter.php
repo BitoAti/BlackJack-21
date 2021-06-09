@@ -3,6 +3,7 @@
 
 class PointCounter
 {
+
     public static function bestPointCounter($deck)
     {
         $point = 0;
@@ -10,13 +11,14 @@ class PointCounter
             $point += $card->getPoint();
         }
         if ($point > 21) {
-            if(self::getNumberOFAce($deck) == 1){
+            if (self::getNumberOFAce($deck) == 1) {
                 $point -= 10;
                 return $point;
-            }elseif(self::getNumberOFAce($deck) > 1){
-                $point -= (self::getNumberOFAce($deck)-1)*10;
-                if($point < 22){
-                    return $point;}
+            } elseif (self::getNumberOFAce($deck) > 1) {
+                $point -= (self::getNumberOFAce($deck) - 1) * 10;
+                if ($point < 22) {
+                    return $point;
+                }
                 return $point - 10;
             }
         }
@@ -33,8 +35,6 @@ class PointCounter
         }
         return $counter;
     }
-
-
 
 
 }

@@ -7,7 +7,6 @@ class Dealer
     private $cards = array();
     private $hide = true;
 
-
     /**
      * @return null[]
      */
@@ -23,7 +22,6 @@ class Dealer
 
     public function dealerPoint()
     {
-
         return PointCounter::bestPointCounter($this->cards);
     }
 
@@ -45,7 +43,6 @@ class Dealer
     public function isHide()
     {
         return $this->hide;
-
     }
 
     /**

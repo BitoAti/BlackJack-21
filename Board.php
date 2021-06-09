@@ -38,7 +38,6 @@ class Board
         $this->newLine(1);
         echo "Dealer's cards value: " . $point;
         $this->newLine(2);
-
     }
 
     public function printPlayersPoint($player)
@@ -53,8 +52,6 @@ class Board
     {
         echo "Dealer`s cards: ";
         $this->newLine(2);
-
-
         if ($dealer->isHide()) {
             $cardSymbol = "░";
         } else {
@@ -64,7 +61,6 @@ class Board
             echo "┌───";
         }
         echo "┌──────────┐";
-
         echo "\n";
         if ($dealer->isHide()) {
             echo "|" . $cardSymbol . $cardSymbol . $cardSymbol;
@@ -74,7 +70,6 @@ class Board
                 } else {
                     $this->printCardUpperSymbol($dealerCards[$i]);
                     echo " ";
-
                 }
             }
         } else {
@@ -84,9 +79,7 @@ class Board
 
                 } else {
                     $this->printCardUpperSymbol($dealerCards[$i]);
-                    echo" ";
-
-
+                    echo " ";
                 }
             }
         }
@@ -97,71 +90,54 @@ class Board
             echo "|   ";
         }
         echo "|          |";
-
         echo "\n";
         echo "|" . $cardSymbol . $cardSymbol . $cardSymbol;
-
         for ($i = 1; $i < count($dealerCards) - 1; $i++) {
             echo "|   ";
         }
         $this->printCardMiddleSymbol($dealerCards[$i]);
         echo "\n";
         echo "|" . $cardSymbol . $cardSymbol . $cardSymbol;
-
         for ($i = 1; $i < count($dealerCards) - 1; $i++) {
             echo "|   ";
         }
         echo "|          |";
-
         echo "\n";
         echo "|" . $cardSymbol . $cardSymbol . $cardSymbol;
-
         for ($i = 1; $i < count($dealerCards) - 1; $i++) {
             echo "|   ";
         }
         if (end($dealerCards)->getValue() == 10) {
-
             $this->printCardLowerSymbol(end($dealerCards));
             echo "|";
         } else {
             $this->printCardLowerSymbol(end($dealerCards));
             echo " |";
         }
-
         echo "\n";
-
         for ($i = 0; $i < count($dealerCards) - 1; $i++) {
             echo "└───";
         }
-
         echo "└──────────┘";
     }
 
     public function printPlayerCards($playerCards)
     {
-
-
         echo "Player's cards: ";
         echo "\n";
         echo "\n";
-
         for ($i = 0; $i < count($playerCards) - 1; $i++) {
             echo "┌───";
         }
         echo "┌──────────┐";
-
         echo "\n";
-
         for ($i = 0; $i < count($playerCards); $i++) {
             if ($playerCards[$i]->getValue() == 10) {
                 $this->printCardUpperSymbol($playerCards[$i]);
             } else {
                 $this->printCardUpperSymbol($playerCards[$i]);
                 echo " ";
-
             }
-
-
         }
         echo "       |";
         echo "\n";
@@ -169,19 +145,16 @@ class Board
             echo "|   ";
         }
         echo "|          |";
-
         echo "\n";
         for ($i = 0; $i < count($playerCards) - 1; $i++) {
             echo "|   ";
         }
         $this->printCardMiddleSymbol($playerCards[$i]);
-
         echo "\n";
         for ($i = 0; $i < count($playerCards) - 1; $i++) {
             echo "|   ";
         }
         echo "|          |";
-
         echo "\n";
         for ($i = 0; $i < count($playerCards) - 1; $i++) {
             echo "|   ";
@@ -191,21 +164,15 @@ class Board
         } else {
             $this->printCardLowerSymbol($playerCards[$i]);
             echo " |";
-
         }
-
         echo "\n";
-
         for ($i = 0; $i < count($playerCards) - 1; $i++) {
             echo "└───";
         }
-
         echo "└──────────┘";
     }
 
-
     public function printDeck()
-
     {
         $faceDownPatternHalfMinusOne = "░░░";
         $faceDownPatternHalf = "░░░░";
@@ -218,21 +185,18 @@ class Board
         echo "\n";
         echo "\n";
     }
+
     public function printCardMiddleSymbol($card)
     {
         switch ($card->getForm()) {
             case '♥':
             case "♦":
-
                 echo "|    " . "\e[01;31m" . $card->getForm() . "\e[0m" . "     |";
                 break;
             default:
                 echo "|    " . $card->getForm() . "     |";
-
                 break;
         }
-
-
     }
 
     public function printCardUpperSymbol($card)
@@ -244,7 +208,6 @@ class Board
                 break;
             default:
                 echo "|" . $card->getValue() . $card->getForm();
-
                 break;
         }
     }

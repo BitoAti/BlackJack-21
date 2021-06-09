@@ -8,7 +8,6 @@ class Card
     private $point;
     private $design=array();
 
-
     public function __construct($form, $value)
     {
         $this->form = $form;
@@ -20,19 +19,6 @@ class Card
         }else{
             $this->point = $value;
         }
-
-
-//        array_push($this->design,'┌──────────┐');
-//        array_push($this->design,'│ '."\033[31m".$value.'♠'."\033[37m".'       │');
-//        array_push($this->design,'│          │');
-//        array_push($this->design,'│    '."\033[31m".json_decode('"'.$form.'"')."\033[37m".'     │');
-//        array_push($this->design,'│          │');
-//        array_push($this->design,'│       '."\033[31m".$value.json_decode('"'.$form.'"')."\033[37m".' │');
-//        array_push($this->design,'└──────────┘');
-
-//        foreach ($this->design as $row){
-//            echo $row."\n";
-//        }
     }
 
 
@@ -48,7 +34,6 @@ class Card
         return $this->form;
     }
 
-
     /**
      * @return mixed
      */
@@ -56,7 +41,6 @@ class Card
     {
         return $this->value;
     }
-
 
     /**
      * @return int

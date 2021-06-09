@@ -41,7 +41,7 @@ class Game
             $this->handleCash($bet);
             $this->dealFirstTurnCards();
             $action = $this->askForAction();
-            while($action != "H" && $action != "S"){
+            while ($action != "H" && $action != "S") {
                 $action = $this->askForAction();
             }
             $action = $this->handleHitAction($action);
@@ -49,8 +49,6 @@ class Game
             $this->displayWinResult($bet);
             $this->dealer->deleteCard();
             $this->player->deleteCard();
-            //TODO pakli ujratoltese ha x alatt van a kartyak szama
-
         }
     }
 
@@ -112,21 +110,20 @@ class Game
         echo "\nYou have " . $this->player->getCash() . " credit. What is your bet: ";
         $bet = readline();
         while ($bet > $this->player->getCash() || is_numeric($bet) == false) {
-            if($bet > $this->player->getCash()){
+            if ($bet > $this->player->getCash()) {
                 echo "\nYou dont have enough credit! You have " . $this->player->getCash() . " credit. \n What is your bet: ";
                 $bet = readline();
-            }else{
+            } else {
                 echo "\nYou should type numeric characters! \n What is your bet: ";
                 $bet = readline();
             }
-
         }
         return $bet;
     }
 
     public function dealFirstTurnCards()
     {
-        for($i = 0; $i <2; $i++){
+        for ($i = 0; $i < 2; $i++) {
             $this->dealCard("player");
             $this->dealCard("dealer");
         }
@@ -186,8 +183,6 @@ class Game
                 break;
         }
     }
-
-
 }
 
 
