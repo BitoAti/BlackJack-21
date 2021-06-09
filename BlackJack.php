@@ -5,7 +5,7 @@ require "card/CardDeck.php";
 require "card/CardFactory.php";
 require "player/Player.php";
 require "player/Dealer.php";
-require "Table.php";
+require "Board.php";
 require "PointCounter.php";
 
 class BlackJack
@@ -17,8 +17,6 @@ class BlackJack
         $game->prepareGame();
         $game->playGame();
       }
-
-
 }
 
 $blackJack = new BlackJack();

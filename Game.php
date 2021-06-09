@@ -14,7 +14,7 @@ class Game
         $this->cardDeck = new CardDeck();
         $this->player = new Player();
         $this->dealer = new Dealer();
-        $this->table = new Table();
+        $this->table = new Board();
     }
 
     public function showWelcomePage()

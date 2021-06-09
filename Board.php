@@ -1,7 +1,7 @@
 <?php
 
 
-class Table
+class Board
 {
     public function printTable($dealer, $player, $deck)
     {
