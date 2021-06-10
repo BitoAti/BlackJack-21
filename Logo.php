@@ -20,7 +20,4 @@ class Logo
         echo "\n";
         echo "\n";
         }
-
-
-
 }
