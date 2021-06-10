@@ -8,15 +8,13 @@ require "player/Dealer.php";
 require "Board.php";
 require "PointCounter.php";
 
-class BlackJack
-{
-    public function start()
-    {
+class BlackJack {
+    public function start() {
         $game = new Game();
         $game->showWelcomePage();
         $game->prepareGame();
         $game->playGame();
-      }
+    }
 }
 
 $blackJack = new BlackJack();
