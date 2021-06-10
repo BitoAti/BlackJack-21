@@ -1,39 +1,34 @@
 <?php
 require "Logo.php";
 
-class Game
-{
-
+class Game {
     private $cardDeck;
     private $player;
     private $dealer;
     private $table;
 
-    public function __construct()
-    {
+    /**
+     * Game constructor.
+     */
+    public function __construct() {
         $this->cardDeck = new CardDeck();
         $this->player = new Player();
         $this->dealer = new Dealer();
         $this->table = new Board();
     }
 
-    public function showWelcomePage()
-    {
+    public function showWelcomePage() {
         Logo::printLogo();
         echo "Enter you name: ";
         $playerName = readline("Enter your name: ");
         $this->player->setName($playerName);
-
     }
 
-    public function prepareGame()
-    {
+    public function prepareGame() {
         CardFactory::createCardDeck($this->cardDeck);
-
     }
 
-    public function playGame()
-    {
+    public function playGame() {
         $turn = true;
         while ($turn) {
             $this->dealer->setHide(true);
@@ -41,7 +36,7 @@ class Game
             $this->handleCash($bet);
             $this->dealFirstTurnCards();
             $action = $this->askForAction();
-            while($action != "H" && $action != "S"){
+            while ($action != "H" && $action != "S") {
                 $action = $this->askForAction();
             }
             $action = $this->handleHitAction($action);
@@ -49,13 +44,10 @@ class Game
             $this->displayWinResult($bet);
             $this->dealer->deleteCard();
             $this->player->deleteCard();
-            //TODO pakli ujratoltese ha x alatt van a kartyak szama
-
         }
     }
 
-    public function dealCard($who)
-    {
+    public function dealCard($who) {
         $randomCard = $this->cardDeck->dealCard(array_rand($this->cardDeck->getDeck()));
         switch ($who) {
             case "player":
@@ -67,13 +59,11 @@ class Game
         }
     }
 
-    public function handleCash($bet)
-    {
+    public function handleCash($bet) {
         $this->player->setCash($bet * (-1));
     }
 
-    public function winChecker()
-    {
+    public function winChecker(): string {
         if ($this->player->playerPoint() > 21 || 21 - $this->player->playerPoint() > 21 - $this->dealer->dealerPoint() && $this->dealer->dealerPoint() < 22) {
             return "dealer";
         } elseif ($this->player->playerPoint() == $this->dealer->dealerPoint()) {
@@ -81,68 +71,56 @@ class Game
         } elseif (21 - $this->player->playerPoint() < 21 - $this->dealer->dealerPoint() || $this->dealer->dealerPoint() > 21) {
             return "player";
         } else {
-            return "dont Know";
+            return "";
         }
     }
 
-    public function playerWin($bet)
-    {
+    public function playerWin($bet) {
         $this->player->setCash($bet * 2);
         echo "\nYou won!";
     }
 
-    public function draw($bet)
-    {
+    public function draw($bet) {
         $this->player->setCash($bet);
         echo "\nIt's a draw!";
     }
 
-
-    public function endOfTurn()
-    {
+    public function endOfTurn() {
         if ($this->player->playerPoint() > 21) {
             return true;
         }
         return false;
     }
 
-
-    public function askForBet()
-    {
+    public function askForBet() {
         echo "\nYou have " . $this->player->getCash() . " credit. What is your bet: ";
         $bet = readline();
         while ($bet > $this->player->getCash() || is_numeric($bet) == false) {
-            if($bet > $this->player->getCash()){
+            if ($bet > $this->player->getCash()) {
                 echo "\nYou dont have enough credit! You have " . $this->player->getCash() . " credit. \n What is your bet: ";
-                $bet = readline();
-            }else{
+            } else {
                 echo "\nYou should type numeric characters! \n What is your bet: ";
-                $bet = readline();
             }
-
+            $bet = readline();
         }
         return $bet;
     }
 
-    public function dealFirstTurnCards()
-    {
-        for($i = 0; $i <2; $i++){
+    public function dealFirstTurnCards() {
+        for ($i = 0; $i < 2; $i++) {
             $this->dealCard("player");
             $this->dealCard("dealer");
         }
         $this->table->printTable($this->dealer, $this->player, $this->cardDeck);
     }
 
-    public function askForAction()
-    {
+    public function askForAction() {
         echo "\nWhat do you want to do (STAND - S, HIT - H) ?  ";
         $action = readline();
         return $action;
     }
 
-
-    public function handleHitAction($action)
-    {
+    public function handleHitAction($action) {
         while ($action == "H") {
             sleep(1);
             $this->dealCard("player");
@@ -159,8 +137,7 @@ class Game
         return $action;
     }
 
-    public function handleDealersTurn($action)
-    {
+    public function handleDealersTurn($action) {
         if ($action != "end") {
             $this->dealer->setHide(false);
             $this->table->printTable($this->dealer, $this->player, $this->cardDeck);
@@ -172,8 +149,7 @@ class Game
         }
     }
 
-    public function displayWinResult($bet)
-    {
+    public function displayWinResult($bet) {
         switch ($this->winChecker()) {
             case "player":
                 $this->playerWin($bet);
@@ -186,8 +162,6 @@ class Game
                 break;
         }
     }
-
-
 }
 
 
